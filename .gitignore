@@ -1,0 +1,7 @@
+.idea
+
+node_modules
+package-lock.json
+
+Neo4j-18627349.txt
+.env

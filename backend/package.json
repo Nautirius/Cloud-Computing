@@ -1,0 +1,18 @@
+{
+  "name": "cloud-computing-backend",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "neo4j-driver": "^6.0.1",
+    "path": "^0.12.7",
+    "url": "^0.11.4",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

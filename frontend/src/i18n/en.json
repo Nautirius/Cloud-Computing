@@ -1,0 +1,20 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "drag": "Drag to reorder"
+  },
+  "home": {
+    "greeting": "Welcome to GeoGraph"
+  },
+  "devices": {
+    "greeting": "Devices Page",
+    "addDevice": "Add Device"
+  },
+  "navbar": {
+    "about": "About",
+    "connections": "Search connections",
+    "explore": "Explore"
+  }
+}

@@ -1,0 +1,120 @@
+// Node
+CREATE CONSTRAINT city_id IF NOT EXISTS
+FOR (c:City) REQUIRE c.id IS UNIQUE;
+
+// Relation
+CREATE CONSTRAINT connection_id IF NOT EXISTS
+FOR ()-[r:CONNECTED]-() REQUIRE r.id IS UNIQUE;
+
+
+// Sample Data
+CREATE (a:City {id: "krk", name: "Kraków"});
+CREATE (b:City {id: "kat", name: "Katowice"});
+CREATE (c:City {id: "gli", name: "Gliwice"});
+CREATE (d:City {id: "waw", name: "Warszawa"});
+CREATE (e:City {id: "pozn", name: "Poznań"});
+CREATE (f:City {id: "ber", name: "Berlin"});
+CREATE (g:City {id: "ham", name: "Hamburg"});
+CREATE (h:City {id: "ams", name: "Amsterdam"});
+CREATE (i:City {id: "par", name: "Paris"});
+CREATE (j:City {id: "lon", name: "London"});
+CREATE (k:City {id: "cph", name: "Copenhagen"});
+CREATE (l:City {id: "osl", name: "Oslo"});
+
+MATCH (a:City{id:"krk"}), (b:City{id:"kat"})
+CREATE (a)-[:CONNECTED {
+    id: "krk-kat-bus",
+    transport: "bus",
+    distance: 50,
+    time: 60,
+    cost: 15
+}]->(b);
+
+MATCH (b:City{id:"kat"}), (c:City{id:"gli"})
+CREATE (b)-[:CONNECTED {
+    id: "kat-gli-train",
+    transport: "train",
+    distance: 30,
+    time: 40,
+    cost: 20
+}]->(c);
+
+// Kraków <-> Katowice
+MATCH (a:City{id:"krk"}), (b:City{id:"kat"})
+CREATE (a)-[:CONNECTED {id: "krk-kat-bus", transport:"bus", distance:50, time:60, cost:15}]->(b);
+
+// Kraków <-> Gliwice
+MATCH (a:City{id:"krk"}), (c:City{id:"gli"})
+CREATE (a)-[:CONNECTED {id: "krk-gli-train", transport:"train", distance:80, time:120, cost:25}]->(c);
+
+// Katowice <-> Gliwice
+MATCH (b:City{id:"kat"}), (c:City{id:"gli"})
+CREATE (b)-[:CONNECTED {id: "kat-gli-bus", transport:"bus", distance:30, time:40, cost:10}]->(c);
+
+// Kraków <-> Warsaw
+MATCH (a:City{id:"krk"}), (d:City{id:"waw"})
+CREATE (a)-[:CONNECTED {id: "krk-waw-plane", transport:"plane", distance:300, time:50, cost:80}]->(d);
+
+// Warsaw <-> Poznań
+MATCH (d:City{id:"waw"}), (e:City{id:"pozn"})
+CREATE (d)-[:CONNECTED {id: "waw-pozn-train", transport:"train", distance:310, time:180, cost:40}]->(e);
+
+// Gliwice <-> Poznań
+MATCH (c:City{id:"gli"}), (e:City{id:"pozn"})
+CREATE (c)-[:CONNECTED {id: "gli-pozn-bus", transport:"bus", distance:200, time:180, cost:50}]->(e);
+
+// Katowice <-> Warsaw
+MATCH (b:City{id:"kat"}), (d:City{id:"waw"})
+CREATE (b)-[:CONNECTED {id: "kat-waw-car", transport:"car", distance:250, time:300, cost:35}]->(d);
+
+// Berlin <-> Hamburg
+MATCH (f:City{id:"ber"}), (g:City{id:"ham"})
+CREATE (f)-[:CONNECTED {id: "ber-ham-train", transport:"train", distance:300, time:120, cost:50}]->(g);
+
+// Berlin <-> Amsterdam
+MATCH (f:City{id:"ber"}), (h:City{id:"ams"})
+CREATE (f)-[:CONNECTED {id: "ber-ams-plane", transport:"plane", distance:650, time:90, cost:100}]->(h);
+
+// Hamburg <-> Copenhagen
+MATCH (g:City{id:"ham"}), (k:City{id:"cph"})
+CREATE (g)-[:CONNECTED {id: "ham-cph-ship", transport:"ship", distance:350, time:300, cost:70}]->(k);
+
+// Amsterdam <-> Paris
+MATCH (h:City{id:"ams"}), (i:City{id:"par"})
+CREATE (h)-[:CONNECTED {id: "ams-par-train", transport:"train", distance:500, time:180, cost:60}]->(i);
+
+// Paris <-> London
+MATCH (i:City{id:"par"}), (j:City{id:"lon"})
+CREATE (i)-[:CONNECTED {id: "par-lon-plane", transport:"plane", distance:350, time:60, cost:90}]->(j);
+
+// Copenhagen <-> Oslo
+MATCH (k:City{id:"cph"}), (l:City{id:"osl"})
+CREATE (k)-[:CONNECTED {id: "cph-osl-ship", transport:"ship", distance:600, time:480, cost:120}]->(l);
+
+// Berlin <-> Copenhagen
+MATCH (f:City{id:"ber"}), (k:City{id:"cph"})
+CREATE (f)-[:CONNECTED {id: "ber-cph-plane", transport:"plane", distance:450, time:70, cost:85}]->(k);
+
+// Warsaw <-> Berlin
+MATCH (d:City{id:"waw"}), (f:City{id:"ber"})
+CREATE (d)-[:CONNECTED {id: "waw-ber-plane", transport:"plane", distance:570, time:80, cost:95}]->(f);
+
+// Kraków <-> Berlin
+MATCH (a:City{id:"krk"}), (f:City{id:"ber"})
+CREATE (a)-[:CONNECTED {id: "krk-ber-train", transport:"train", distance:600, time:360, cost:75}]->(f);
+
+// Gliwice <-> Berlin
+MATCH (c:City{id:"gli"}), (f:City{id:"ber"})
+CREATE (c)-[:CONNECTED {id: "gli-ber-car", transport:"car", distance:450, time:400, cost:60}]->(f);
+
+// Poznań <-> Amsterdam
+MATCH (e:City{id:"pozn"}), (h:City{id:"ams"})
+CREATE (e)-[:CONNECTED {id: "pozn-ams-plane", transport:"plane", distance:700, time:90, cost:110}]->(h);
+
+// London <-> Oslo
+MATCH (j:City{id:"lon"}), (l:City{id:"osl"})
+CREATE (j)-[:CONNECTED {id: "lon-osl-plane", transport:"plane", distance:900, time:120, cost:150}]->(l);
+
+// Paris <-> Oslo
+MATCH (i:City{id:"par"}), (l:City{id:"osl"})
+CREATE (i)-[:CONNECTED {id: "par-osl-plane", transport:"plane", distance:1200, time:150, cost:200}]->(l);

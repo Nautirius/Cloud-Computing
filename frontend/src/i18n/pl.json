@@ -1,0 +1,20 @@
+{
+  "common": {
+    "cancel": "Anuluj",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "drag": "Przesuń by zmienić kolejność"
+  },
+  "home": {
+    "greeting": "Witaj w GeoGraph"
+  },
+  "devices": {
+    "greeting": "Urządzenia",
+    "addDevice": "Dodaj urządzenie"
+  },
+  "navbar": {
+    "about": "About",
+    "connections": "Search connections",
+    "explore": "Explore"
+  }
+}
