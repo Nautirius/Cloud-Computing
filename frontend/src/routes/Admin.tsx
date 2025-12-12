@@ -15,7 +15,7 @@ interface AdminProps {
 }
 
 export const Admin: FC<AdminProps> = () => {
-    const backend_href = "http://localhost:4000";
+    const backend_href = "https://cloud-computing-37u6.onrender.com";
 
     const [cities, setCities] = useState<any[]>([]);
     const [connections, setConnections] = useState<any[]>([]);

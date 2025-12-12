@@ -12,7 +12,7 @@ interface ExploreProps {
 }
 
 export const Explore: FC<ExploreProps> = () => {
-    const backend_href = "http://localhost:4000";
+    const backend_href = "https://cloud-computing-37u6.onrender.com";
 
     const [formData, setFormData] = useState({
         start: "",

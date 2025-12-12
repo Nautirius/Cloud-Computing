@@ -12,7 +12,7 @@ interface HomeProps {
 }
 
 export const Home: FC<HomeProps> = () => {
-    const backend_href = "http://localhost:4000";
+    const backend_href = "https://cloud-computing-37u6.onrender.com";
 
     const [cities, setCities] = useState<{ id: string, name: string }[]>([]);
     const [filteredStart, setFilteredStart] = useState<any[]>([]);
